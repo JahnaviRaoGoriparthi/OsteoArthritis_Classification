@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <style>
+        body {
+            background-color: #283747;
+            color: #ecf0f1;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .container input[type="file"] {
+            border: 2px solid #1abc9c;
+            padding: 10px;
+            background-color: #16a085;
+            color: #ecf0f1;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        .container button {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .container .prediction {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Classification</h1>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if filename %}
+
+            <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
+
+            <div class="prediction">Predicted Class: {{ prediction }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
